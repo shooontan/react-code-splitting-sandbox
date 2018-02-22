@@ -11,6 +11,9 @@
     ]
   ],
   "plugins": [
+    "dynamic-import-node",
+    "react-loadable/babel",
+    "react-hot-loader/babel",
     [
       "transform-runtime",
       {
@@ -19,8 +22,6 @@
         "regenerator": true,
         "moduleName": "babel-runtime"
       }
-    ],
-    "syntax-dynamic-import",
-    "react-hot-loader/babel"
+    ]
   ]
 }
