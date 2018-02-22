@@ -1,6 +1,7 @@
 // @flow
 /* eslint-disable no-console */
 import * as React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { hot } from 'react-hot-loader';
 import Loadable from 'react-loadable';
 
@@ -19,17 +20,25 @@ const Loading = (props: { error: ?Error, pastDelay: boolean, timedOut: boolean }
   return null;
 };
 
-const LoadableOtherComponent = Loadable({
-  loader: () => import(/* webpackChunkName: "OtherComponent" */ './OtherComponent'),
+const Home = Loadable({
+  loader: () => import(/* webpackChunkName: "HomeComponent" */ './components/Home'),
   loading: Loading,
-  delay: 1000,
-  timeout: 100,
+});
+
+const About = Loadable({
+  loader: () => import(/* webpackChunkName: "AboutComponent" */ './components/About'),
+  loading: Loading,
 });
 
 const App = () => (
   <React.Fragment>
     <div>hello splitted world</div>
-    <LoadableOtherComponent />
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/about" component={About} />
+      </Switch>
+    </Router>
   </React.Fragment>
 );
 

@@ -9,6 +9,7 @@ module.exports = merge(webpackConfig, {
   },
   devServer: {
     hot: true,
+    historyApiFallback: true,
     contentBase: path.join(__dirname, 'public'),
   },
 });
